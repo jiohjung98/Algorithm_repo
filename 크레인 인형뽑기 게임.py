@@ -20,6 +20,7 @@ def solution(board, moves):
                 
                 if (len(stack_list) >= 2):
                     if stack_list[-1] == stack_list[-2]:
+                        # stack_list = stack_list[:-2]
                         stack_list.pop(-1)
                         stack_list.pop(-1)
                         answer += 2
