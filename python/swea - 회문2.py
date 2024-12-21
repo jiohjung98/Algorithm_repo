@@ -5,12 +5,14 @@ def is_pal(arr, leng):
                 break
 
 
-for tc in range(1, 11):
+for tc in range(1, 2):
     n = input()
-    arr1 = [input() for _ in range(100)]
+    arr1 = [input() for _ in range(3)]
     arr2 = [''.join(x) for x in zip(*arr1)]
 
-    for leng in range(100,1,-1):
-        if is_pal(arr1, leng) or is_pal(arr2, leng):
-            break
-    print(f'#{n} {leng}')
+    print(arr1, arr2)
+
+    # for leng in range(100,1,-1):
+    #     if is_pal(arr1, leng) or is_pal(arr2, leng):
+    #         break
+    # print(f'#{n} {leng}')

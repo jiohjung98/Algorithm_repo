@@ -1,5 +1,5 @@
 for tc in range(1, 11):
-    n = int(jnput())
+    n = int(input())
     arr = list(map(int, input().split()))
     cnt = 0
     for i in range(2, len(arr)-1):
