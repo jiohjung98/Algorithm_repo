@@ -6,7 +6,7 @@ function solution(n) {
         }
     }
     
-    return answer*2;
+    return answer+1;
 }
 
 solution(20);
