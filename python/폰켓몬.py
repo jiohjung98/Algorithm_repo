@@ -24,10 +24,16 @@
 # 가장 많은 종류의 폰켓몬을 선택하는 방법이 여러 가지인 경우에도, 선택할 수 있는 폰켓몬 종류 개수의 최댓값 하나만 return 하면 됩니다.
 
 
-def solution(nums):
-    set_nums = set(nums)
-    answer = len(set_nums)
-    if answer > len(nums)//2:
-        answer = len(nums)//2
-    return answer
+# def solution(nums):
+#     set_nums = set(nums)
+#     answer = len(set_nums)
+#     if answer > len(nums)//2:
+#         answer = len(nums)//2
+#     return answer
     
+    
+def solution(nums):
+    filter_nums = list(set(nums))
+    max_cnt = len(nums) // 2
+    
+    return min(max_cnt, len(filter_nums))
