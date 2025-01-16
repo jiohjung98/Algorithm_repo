@@ -15,3 +15,5 @@ def solution(keymap, targets):
             cnt += max_len
         answer.append(cnt)
     return answer
+
+solution(["ABACD", "BCEFD"], ["ABCD","AABB"])
