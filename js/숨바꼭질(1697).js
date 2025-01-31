@@ -1,6 +1,6 @@
 const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
-const [N, K] = input.split(' ').map(Number);
+const [N, K] = input[0].split(' ').map(Number);
 const visited = Array.from({length: 100001}, () => false);
 
 function bfs(start) {
@@ -22,3 +22,5 @@ function bfs(start) {
         }
     }
 }
+
+console.log(bfs(N));
