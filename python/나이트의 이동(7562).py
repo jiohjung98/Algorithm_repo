@@ -11,7 +11,7 @@ for _ in range(T):
     dx = [-1, -2, -2, -1, 1, 2, 2, 1]
     dy = [-2, -1, 1, 2, 2, 1, -1, -2]
 
-    def dfs(x,y):
+    def bfs(x,y):
         queue = deque()
         queue.append([x,y])
         arr[x][y] = 1
@@ -32,4 +32,4 @@ for _ in range(T):
                 if arr[nx][ny] == 0:
                     arr[nx][ny] = arr[x][y] + 1
                     queue.append([nx,ny])
-    dfs(start_x, start_y)
+    bfs(start_x, start_y)
