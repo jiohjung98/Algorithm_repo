@@ -22,7 +22,7 @@ def bfs(x,y):
         for i in range(4):
             nx = x +dx[i]
             ny = y +dy[i]
-
+            
             if nx >= 0 and nx < n and ny >= 0 and ny < m and arr[nx][ny] == 1 and visited[nx][ny] == False:
                 visited[nx][ny] = True
                 arr[nx][ny] = arr[x][y] + 1
@@ -37,10 +37,12 @@ for i in range(n):
             bfs(i,j)
             cnt += 1
 
-print(cnt)
-print(max(extent_arr))
-
-
+if extent_arr:
+    print(cnt)
+    print(max(extent_arr))
+else:
+    print(0)
+    print(0)
 
 # [[1, 2, 0, 1, 2],
 #  [0, 3, 4, 0, 0],
