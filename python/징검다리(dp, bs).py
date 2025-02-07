@@ -28,6 +28,7 @@ for num in arr:
     if idx == len(lis):
         lis.append(num)
     else:
-        continue
+        # 값 갱신
+        lis[idx] = num
 
 print(len(lis))
