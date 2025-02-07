@@ -1,24 +1,34 @@
-n = int(input())
-a, b = tuple(map(int, input().split()))
-m = int(input())
-graph = [[] for _ in range(n+1)]
-for _ in range(m):
-    x, y = tuple(map(int, input().split()))
-    graph[x].append(y)
-    graph[y].append(x)
+const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+const n = Number(input[0]);
+const [a, b] = input[1].split(' ').map(Number);
+const m = Number(input[2]);
 
-visited = [False] * (n+1)
+const visited = Array.from({length: n+1}, () => false);
+const graph = Array.from({length: n+1}, () => []);
 
-def dfs(current, target, cnt):
-    visited[current] = True
+for (let i=0; i<m; i++) {
+    const [x, y] = input[i+3].split(' ').map(Number);
+    graph[x].push(y);
+    graph[y].push(x);
+}
 
-    if current == target:
-        print(cnt)
-        exit(0)
-    else:
-        for neighbor in graph[current]:
-            if not visited[neighbor]:
-                dfs(neighbor, target, cnt + 1)
 
-dfs(a, b, 0)
-print(-1)
+function dfs(current, target, cnt) {
+    visited[current] = true;
+
+    if (current === target) {
+        console.log(cnt);
+        process.exit();
+    }
+
+    else {
+        for (let neighbor of graph[current]) {
+            if (!visited[neighbor]) {
+                dfs(neighbor, target, cnt+1);
+            }
+        }
+    }
+}
+
+dfs(a, b, 0);
+console.log(-1);
