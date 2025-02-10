@@ -1,20 +1,24 @@
-import sys
-input = sys.stdin.readline
+const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
-n, m = map(int, input().split())
+const [n ,m] = input[0].split(' ').map(Number);
 
-graph = [
-    list(map(int, input().split())) for _ in range(n)
-]
+const graph = [];
+for (let i=1; i<=n; i++) {
+    graph.push(input[i].split(' ').map(Number));
+}
 
-dp = [[0] * (n+1) for _ in range(n+1)]
+const dp = Array.from({length: n+1}, () => Array(n+1).fill(0));
 
-for i in range(1, n+1):
-    for j in range(1, n+1):
-        dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1] + graph[i-1][j-1]
+for (let i=1; i<=n; i++) {
+    for (let j=1; j<=n; j++) {
+        dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1] + graph[i-1][j-1];
+    }
+}
 
-for _ in range(m):
-    x1, y1, x2, y2 = map(int, input().split())
-    answer = dp[x2][y2] - dp[x1-1][y2] - dp[x2][y1-1] + dp[x1-1][y1-1]
+for (let i=n+1; i<=n+m; i++) {
+    const [x1, y1, x2, y2] = input[i].split(' ').map(Number);
 
-    print(answer)
+    let answer = dp[x2][y2] - dp[x1-1][y2] - dp[x2][y1-1] + dp[x1-1][y1-1];
+
+    console.log(answer);
+}
