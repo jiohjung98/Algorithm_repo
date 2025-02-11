@@ -5,13 +5,13 @@ const T = Number(input[0]);
 let index = 1; 
 
 for (let t = 0; t < T; t++) {
-    const n = Number(input[index]);  // n 값
+    const n = Number(input[index]);  
     const arr = [
-        input[index + 1].split(' ').map(Number), // 첫 번째 줄
-        input[index + 2].split(' ').map(Number)  // 두 번째 줄
+        input[index + 1].split(' ').map(Number),
+        input[index + 2].split(' ').map(Number)  
     ];
     
-    index += 3;  // 다음 테스트 케이스로 이동
+    index += 3;
 
     if (n === 1) {
         console.log(Math.max(arr[0][0], arr[1][0]));
