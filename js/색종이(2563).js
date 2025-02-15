@@ -1,14 +1,21 @@
-n = int(input())
-arr = [[0] * 100 for _ in range(100)]
+const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
-for i in range(n):
-    y, x = map(int, input().split())
-    for i in range(x, x+10):
-        for j in range(y, y+10):
-            arr[i][j] = 1
-    
-ans = 0
-for x in range(100):
-    ans += arr[x].count(1)
+const n = Number(input[0]);
+const arr = Array.from({length: 100}, () => Array(100).fill(0));
 
-print(ans)
+for (let i=1; i<=n; i++) {
+    const [y, x] = input[i].split(' ').map(Number);
+
+    for (let j=x; j<x+10; j++) {
+        for (let k=y; k<y+10; k++) {
+            arr[j][k] = 1;
+        }
+    }
+}
+
+let ans = 0;
+for (let x=0; x<100; x++) {
+    ans += arr[x].filter(x => 1 === x).length;
+}
+
+console.log(ans);
