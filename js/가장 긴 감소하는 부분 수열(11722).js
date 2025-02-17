@@ -1,13 +1,18 @@
-n = int(input())
-arr = list(map(int, input().split()))
+const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
-dp = [1] * n
+const n = Number(input[0]);
+const arr = input[1].split(' ').map(Number);
 
-for i in range(n):
-    for j in range(i):
-        if arr[i] < arr[j]:
-            dp[i] = max(dp[i], dp[j]+1)
-        else:
-            dp[i] = dp[i]
+const dp = Array.from({length: n}, () => 1);
 
-print(max(dp))
+for (let i=0; i<n; i++) {
+    for (let j=0; j<i; j++) {
+        if (arr[i] < arr[j]) {
+            dp[i] = Math.max(dp[i], dp[j] + 1);
+        } else {
+            dp[i] = dp[i];
+        }
+    }
+}
+
+console.log(Math.max(...dp));
