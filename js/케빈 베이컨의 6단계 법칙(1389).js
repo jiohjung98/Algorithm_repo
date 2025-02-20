@@ -1,34 +1,42 @@
-from collections import deque
+const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
-n, m = map(int, input().split())
-arr = [[] for _ in range(n+1)]
+const [n, m] = input[0].split(' ').map(Number);
+const arr = Array.from({length:n+1}, () => []);
 
-for i in range(m):
-    a, b = map(int, input().split())
-    arr[a].append(b)
-    arr[b].append(a)
+for (let i=1; i<=m; i++) {
+    let [x, y] = input[i].split(' ').map(Number);
+    arr[x].push(y);
+    arr[y].push(x);
+}
 
-def bfs(start):
-    queue = deque()
-    queue.append(start)
-    visited = [0] * (n+1)
+function bfs(start) {
+    const queue = [];
+    queue.push([start]);
+    const visited = Array(n+1).fill(0);
 
-    while queue:
-        now = queue.popleft()
-        for next in arr[now]:
-            # 방문 전이라면 
-            if visited[next] == 0:
-                visited[next] = visited[now] + 1
-                queue.append(next)
-    return sum(visited)
+    while (queue.length) {
+        const now = queue.shift();
+        for (let next of arr[now]) {
+            // 방문 전이라면
+            if (visited[next] === 0) {
+                visited[next] = visited[now] + 1;
+                queue.push([next]);
+            }
+        }
+    }
 
-min_val = float('inf')
-ans = 0
-for i in range(1, n+1):
-    total_distance = bfs(i)
-    if total_distance < min_val:
-        min_val = total_distance
-        ans = i
+    return [...visited].reduce((acc,cur) => acc+cur, 0);
+}
 
-print(ans)
+let minValue = Infinity;
+let answer = 0;
 
+for (let i=1; i<=n; i++) {
+    let totalDistance = bfs(i);
+    if (totalDistance < minValue) {
+        minValue = totalDistance
+        answer = i;
+    }
+}
+
+console.log(answer);
