@@ -11,7 +11,7 @@ for (let i=0; i < N; i++) {
         num %= arr.length;
     }
     // 원소 꺼내기 - splice
-    // splice는 기본적으로 배열 형태로 반환되므로 값만 꺼내고싶으면 [0] 붙여줘야 함
+    // splice는 기본적으로 배열 형태로 반환되므로 값만 꺼내고싶으면 [0] 붙여줘야 함!!
     answer.push(arr.splice(num,1)[0]);
 }
 
