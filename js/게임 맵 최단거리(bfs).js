@@ -1,6 +1,7 @@
 function solution(maps) {
-    const dx = [-1,1,0,0];
-    const dy = [0,0,-1,1];
+    // 우, 하, 좌,
+    const dx = [0, 1, 0, -1];
+    const dy = [1, 0, -1, 0];
     
     const queue = [[0,0]];
     
@@ -11,10 +12,8 @@ function solution(maps) {
             var nx = x + dx[i];
             var ny = y + dy[i];
             
-            if (nx < 0 || nx >= maps.length || ny < 0 || ny >= maps[0].length) continue;
-            if (maps[nx][ny] === 0) continue;
-            if (maps[nx][ny] === 1) {
-                maps[nx][ny] = maps[x][y] + 1
+            if (nx >= 0 && nx < maps.length && ny >= 0 && ny < maps[0].length && maps[nx][ny] === 1) {
+                maps[nx][ny] = maps[x][y] + 1;
                 queue.push([nx,ny]);
             }
         }
