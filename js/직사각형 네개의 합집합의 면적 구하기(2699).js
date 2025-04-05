@@ -1,4 +1,5 @@
 let matrix = Array.from({length:100}, () => Array(100).fill(0));
+const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
 for (let i=0; i<4; i++) {
     let [x1, y1, x2, y2] = input[i].split(' ').map(Number);
