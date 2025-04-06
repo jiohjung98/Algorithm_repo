@@ -1,59 +1,65 @@
+import sys
+input = sys.stdin.readline
+
+bingo = []
+for _ in range(5):
+    bingo.append(list(map(int, input().split())))
+
+bingo_num = []
+for _ in range(5):
+    bingo_num.append(list(map(int, input().split())))
+
 def check():
     result = 0
-    # 각 행에서 탐색 
+    # 가로 빙고 체크
     for i in range(5):
-        count = 0
+        cnt = 0
         for j in range(5):
-            if myBingo[i][j] == 0: 
-                count += 1
-        if count == 5:
+            if bingo[i][j] == 0:
+                cnt += 1
+        if cnt == 5:
             result += 1
     
-    for j in range(5):
-        count = 0
-        for i in range(5):
-            if myBingo[i][j] == 0:
-                count += 1
-        if count == 5: 
+    # 세로 빙고 체크
+    for i in range(5):
+        cnt = 0
+        for j in range(5):
+            if bingo[j][i] == 0:
+                cnt += 1
+        if cnt == 5:
             result += 1
     
-    count = 0
+    # 대각선 빙고 체크(왼->오)
+    cnt = 0
     for i in range(5):
-        if myBingo[i][i] == 0:
-            count += 1
-    if count == 5:
+        if bingo[i][i] == 0:
+            cnt += 1
+    if cnt == 5:
         result += 1
-
-    count = 0
+    
+    # 대각선 빙고 체크(오->왼)
+    cnt = 0
     for i in range(5):
-        if myBingo[i][4 - i] == 0:
-            count += 1
-    if count == 5: 
+        if bingo[i][4-i] == 0:
+            cnt += 1
+    if cnt == 5:
         result += 1
-
-    return result 
+    
+    return result
 
 def simulate():
-    count = 0
+    cnt = 0
     result = 0
     for i in range(5):
         for j in range(5):
-            x = bingoNum[i][j]
-            count += 1        
-            for a in range(5):
-                for b in range(5):
-                    if myBingo[a][b] == x:
-                        myBingo[a][b] = 0 
-            result = check() 
-            if result >= 3: 
-                return count
-
-myBingo = []
-for _ in range(5):
-    myBingo.append(list(map(int,input().split())))
-
-bingoNum = []
-for _ in range(5):
-    bingoNum.append(list(map(int,input().split())))
+            num = bingo_num[i][j]
+            cnt += 1
+            for x in range(5):
+                for y in range(5):
+                    if bingo[x][y] == num:
+                        bingo[x][y] = 0
+            result = check()
+            if result >= 3:
+                return cnt
 
 print(simulate())
