@@ -1,7 +1,7 @@
 const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const n = Number(input[0]);
-const graph = input.slice(1).map((line) => line.split('').map(Number));
+const graph = input.slice(1).map((line) => line.split(''));
 
 let visited = Array.from({length:n}, () => Array(n).fill(0));
 
