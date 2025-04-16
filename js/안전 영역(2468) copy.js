@@ -3,10 +3,12 @@ const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('
 const n = Number(input[0]);
 const graph = input.slice(1).map((line) => line.split(' ').map(Number));
 
-let maxRain = 0;
-for (let i=0 ; i<n; i++) {
-    maxRain = Math.max(maxRain, Math.max(...graph[i]));
-}
+// let maxRain = 0;
+// for (let i=0 ; i<n; i++) {
+//     maxRain = Math.max(maxRain, Math.max(...graph[i]));
+// }
+
+let maxRain = Math.max(...graph.flat());
 
 const visited = Array.from({length:n}, () => Array(n).fill(false));
 
