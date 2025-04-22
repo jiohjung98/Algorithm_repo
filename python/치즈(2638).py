@@ -27,15 +27,15 @@ def bfs():
 
     while queue:
         x,y = queue.popleft()
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
 
             if nx >= 0 and nx < n and ny >= 0 and ny < m and not visited[nx][ny]:
-                # 여기서 방문처리하면 틀림
-                visited[nx][ny] = True
                 if graph[nx][ny] == 0:
                     queue.append((nx,ny))
+                    visited[nx][ny] = True
                 
                 elif graph[nx][ny] == 1:
                     cnt = 0
@@ -47,9 +47,9 @@ def bfs():
                             cnt += 1
                     if cnt >= 2:
                         melt.append((nx,ny))
-    return melt
+    return melt      
 
-total_time = 0
+total_time = 0  
 
 while True:
     melt_list = bfs()
@@ -59,6 +59,7 @@ while True:
 
     for x,y in melt_list:
         graph[x][y] = 0
+
     total_time += 1
 
 print(total_time)
